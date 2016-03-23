@@ -13,16 +13,25 @@ GLAWS is based on the [Pixypet] (https://learn.adafruit.com/pixy-pet-robot-color
 
 ## Getting Started
 ---
-1. Download the (Arduino Software) [https://www.arduino.cc/en/Main/Software].  The (Windows Installer) [https://www.arduino.cc/download_handler.php?f=/arduino-1.6.8-windows.exe] will set up your computer with the software. This software is used to program your Arduino Leonardo which plugs into your computer with a micro-USB cable (the same cable to charge your Android phone). The Arduino was also used as the micrcontroller in the IT105 Temperature Sensor Lab.
+1. Download the [Arduino Software] (https://www.arduino.cc/en/Main/Software).  The [Windows Installer] (https://www.arduino.cc/download_handler.php?f=/arduino-1.6.8-windows.exe) will set up your computer with the software. This software is used to program your Arduino Leonardo which plugs into your computer with a micro-USB cable (the same cable to charge your Android phone). The Arduino was also used as the micrcontroller in the IT105 Temperature Sensor Lab.
  
 ![Alt Text](https://github.com/westpoint-robotics/GLAWS/blob/master/arduino.png)
 
-2. Copy Pixy and ZumoMotor libraries into your Arduino library on your computer.
+2. Copy the Pixy and ZumoMotor libraries into your Arduino library on your computer.
  - Using Windows Explorer, navigate to this folder: `My Documents/Arduino/libraries`
  - Click this [link] (file://usmasvddkorn/Cadet-courses$/XE475/Arduino_Examples/GLAWS/libraries) to open the needed libraries.
  - Click and drag these folders into `My Documents/Arduino/libraries`
-Copy the starter sketch over to your computer.
+3. Copy the starter sketch over to your computer.
  - Click this [link] (file:\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\Spear_Bot) to open the Spear_Bot folder.
  - Click and drag the Spear_Bot folder onto your Desktop.
  - Double-click `Spear_Bot.ino` to open the sketch.
- - 
+4. Select your Arduino board.
+ - Select `Arduino Leonardo` in `Tools > Board` 
+ - Refer to Step 7 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows)
+5. Select your COM port (it may already be correctly selected).
+ - Select `COM3` in `Tools > Port` (it will typically be a higher number than 1).
+ - Refer to Step 8 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows)
+6. Upload your program.
+ - Refer to Step 9 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows)
+
+ 
