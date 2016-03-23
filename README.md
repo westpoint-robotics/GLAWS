@@ -20,10 +20,10 @@ Download the [Arduino Software] (https://www.arduino.cc/en/Main/Software).  The 
 
 1. Copy the Pixy and ZumoMotor libraries into your Arduino library on your computer.
  - Using Windows Explorer, navigate to this folder: `~\My Documents\Arduino\libraries`
- - In another window, paste this location: `\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\libraries`
+ - In another window, copy and paste this location: `\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\libraries`
  - Click and drag `Pixy` and `ZumoMotors` into `~\My Documents\Arduino\libraries`
 2. Copy the starter sketch over to your computer.
- - In Windows Explorer, paste this link: `\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\Spear_Bot` to open the Spear_Bot folder.
+ - In Windows Explorer, copy and paste this link: `\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\Spear_Bot` to open the Spear_Bot folder.
  - Click and drag the Spear_Bot folder onto your Desktop.
  - Double-click `Spear_Bot.ino` to open the sketch.
 3. Select your Arduino board.
@@ -37,6 +37,8 @@ Download the [Arduino Software] (https://www.arduino.cc/en/Main/Software).  The 
 6. Your Arduino should now be programmed.
 7. Now you must train your Pixycam to acquire targets.
  - Follow this [tutorial] (http://www.cmucam.org/projects/cmucam5/wiki/Teach_Pixy_an_object) to train and set the first signature for red.
+
+![Alt Text](https://github.com/westpoint-robotics/GLAWS/blob/master/train.jpg)
 
 
 [1] Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,”
