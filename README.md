@@ -27,16 +27,18 @@ Download the [Arduino Software] (https://www.arduino.cc/en/Main/Software).  The 
  - Click and drag the Spear_Bot folder onto your Desktop.
  - Double-click `Spear_Bot.ino` to open the sketch.
 3. Select your Arduino board.
- - Select `Arduino Leonardo` in `Tools > Board` 
- - Refer to Step 7 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows)
+ - Select `Arduino Leonardo` in `Tools > Board`. 
+ - Refer to Step 7 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows).
 4. Select your COM port (it may already be correctly selected).
  - Select `COM3` (for exmaple) in `Tools > Port` (it will typically be a higher number than 1).
  - Refer to Step 8 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows)
 5. Upload your program.
- - Refer to Step 9 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows)
+ - Refer to Step 9 in this [tutorial] (https://www.arduino.cc/en/Guide/Windows).
 6. Your Arduino should now be programmed.
 7. Now you must train your Pixycam to acquire targets.
  - Follow this [tutorial] (http://www.cmucam.org/projects/cmucam5/wiki/Teach_Pixy_an_object) to train and set the first signature for red.
+ - Multiple color signatures can be trained.
+8. If you need assistance, see anyone in the Engineering Support Group in EECS.
 
 ![Alt Text](https://github.com/westpoint-robotics/GLAWS/blob/master/train.jpg)
 
