@@ -41,4 +41,4 @@ Download the [Arduino Software] (https://www.arduino.cc/en/Main/Software).  The 
 ![Alt Text](https://github.com/westpoint-robotics/GLAWS/blob/master/train.jpg)
 
 
-[1] Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,”
+[1] Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,” (Department of Defense, 2012), 13.
