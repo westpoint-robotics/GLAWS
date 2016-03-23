@@ -15,7 +15,9 @@ GLAWS is based on the [Pixypet] (https://learn.adafruit.com/pixy-pet-robot-color
 ## Getting Started
 
 Download the [Arduino Software] (https://www.arduino.cc/en/Main/Software).  The [Windows Installer] (https://www.arduino.cc/download_handler.php?f=/arduino-1.6.8-windows.exe) will set up your computer with the software. This software is used to program your Arduino Leonardo which plugs into your computer with a micro-USB cable (the same cable to charge your Android phone). The Arduino was also used as the micrcontroller in the IT105 Temperature Sensor Lab.
+
 ![Alt Text](https://github.com/westpoint-robotics/GLAWS/blob/master/arduino.png)
+
 1. Copy the Pixy and ZumoMotor libraries into your Arduino library on your computer.
  - Using Windows Explorer, navigate to this folder: `My Documents/Arduino/libraries`
  - Click this [link] (file://usmasvddkorn/Cadet-courses$/XE475/Arduino_Examples/GLAWS/libraries) to open the needed libraries.
