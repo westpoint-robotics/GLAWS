@@ -20,7 +20,7 @@ Download the [Arduino Software] (https://www.arduino.cc/en/Main/Software).  The 
 
 1. Copy the Pixy and ZumoMotor libraries into your Arduino library on your computer.
  - Using Windows Explorer, navigate to this folder: `My Documents/Arduino/libraries`
- - Click this [link] (file:\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\libraries) to open the needed libraries.
+ - Click this <a href="file:\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\libraries">link</a> to open the needed libraries.
  - Click and drag these folders into `My Documents/Arduino/libraries`
 2. Copy the starter sketch over to your computer.
  - Click this [link] (file:\\usmasvddkorn\Cadet-courses$\XE475\Arduino_Examples\GLAWS\Spear_Bot) to open the Spear_Bot folder.
