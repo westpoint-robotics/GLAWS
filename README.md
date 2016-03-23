@@ -1,7 +1,7 @@
 # GLAWS
 Ground Lethal Autonomous Weapons System
 
-The US Department of Defense defines an autonomous weapon as one that, “… once activated, can select and engage targets without further intervention by a human operator.” ([1](Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,” (Department of Defense, 2012), 13.)). As technologies improve, one can imagine that the autonomous weapons of the future might operate in ways that are considerably different from the weapons of today.
+The US Department of Defense defines an autonomous weapon as one that, “… once activated, can select and engage targets without further intervention by a human operator.” [1]. As technologies improve, one can imagine that the autonomous weapons of the future might operate in ways that are considerably different from the weapons of today.
 
 ![Alt Text](https://github.com/westpoint-robotics/GLAWS/blob/master/glaws_intro.jpg)
 
@@ -34,3 +34,6 @@ GLAWS is based on the [Pixypet] (https://learn.adafruit.com/pixy-pet-robot-color
 7. Your Arduino should now be programmed.
 8. Now you must train your Pixycam to acquire targets.
  - Follow this [tutorial] (http://www.cmucam.org/projects/cmucam5/wiki/Teach_Pixy_an_object) to train and set the first signature for red.
+
+
+1. Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,”
