@@ -38,7 +38,7 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
 
 1. Download the [Arduino Software (IDE)](https://www.arduino.cc/en/software). This software is used to program your robot (Arduino device) which plugs into your computer with a USB cable (the same cable to charge an Android phone). The Arduino was also used as the microcontroller in the IT105 Temperature Sensor Lab.
 
-    ![Ardiuno IDE graphic](arduino_ide.JPG)
+    <!-- ![Ardiuno IDE graphic](arduino_ide.JPG) -->
 
 1. Get code assets.
     - Browse to the [PY201 course folder](https://usarmywestpoint.sharepoint.com/:f:/r/sites/eecs.cadet/Shared%20Documents/Courses/PY201?csf=1&web=1&e=fBoII3)
