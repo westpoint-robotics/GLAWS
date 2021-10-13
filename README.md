@@ -14,7 +14,7 @@ The system consists of:
 - battery-powered tracked chassis ([Zumo Robot](https://www.pololu.com/product/2510/resources))
 - [Arduino Leonardo](https://store.arduino.cc/usa/leonardo) or [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3) microcontroller
 - servo-driven [pan-tilt unit](https://www.adafruit.com/products/1967)
-- color-tracking camera [Pixycam](https://www.adafruit.com/product/1906)
+- color-tracking camera [PixyCam](https://www.adafruit.com/product/1906)
 - a spear-like primary weapon
 
 Once powered-on, GLAWS searches for color signatures by panning and tilting the camera up and down, left and right much like a human searches for a target.  
@@ -64,10 +64,10 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
 
 ## Changing your robots behaviors
 
-1. You can train your Pixycam to acquire targets (red balloons) or rely on the existing training. 
-    - To train the Pixycam watch this video https://youtu.be/XdQwZi6l9Ns.
-    - You can do this without using Pixymon. This is what he does in the first 60 seconds of the video.
-    - Multiple color signatures can be trained but the default code treats any trained colors as enemy.
+1. You can train your PixyCam to acquire targets (color signatures) or rely on the existing training. 
+    - To train the PixyCam without using PixyMon, watch the first minute of this video https://youtu.be/XdQwZi6l9Ns.
+    - To train the PixyCam, add additional signatures, or modify camera settings, use [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe)[Pixy docs](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:start)
+    - Multiple color signatures can be trained but the default code treats any trained color as the enemy.
 2. You can modify the robot behaviors by adjusting the three variables at the top of the code. The comments in the code suggest acceptable ranges to use when making changes. The original settings are very conservative and lean towards being overly safe.  The three variables are:
     - SEARCH AGGRESSION variable determines how aggressively the robot searches for enemies.
     - DELIBERATION variable determines how long the robot takes to sense the environment and then act upon it.
