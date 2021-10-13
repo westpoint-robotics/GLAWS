@@ -12,10 +12,10 @@ GLAWS is a small, autonomous weapon used to study Just War Theory in PY201.
 
 The system consists of:
 - battery-powered tracked chassis ([Zumo Robot](https://www.pololu.com/product/2510/resources))
-- [Arduino Leonardo](https://store.arduino.cc/usa/leonardo) or [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3) microcontroller.
+- [Arduino Leonardo](https://store.arduino.cc/usa/leonardo) or [Arduino Uno](https://store.arduino.cc/usa/arduino-uno-rev3) microcontroller
 - servo-driven [pan-tilt unit](https://www.adafruit.com/products/1967)
 - color-tracking camera [Pixycam](https://www.adafruit.com/product/1906)
-- a spear-like primary weapon.
+- a spear-like primary weapon
 
 Once powered-on, GLAWS searches for color signatures by panning and tilting the camera up and down, left and right much like a human searches for a target.  
 
