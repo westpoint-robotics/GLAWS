@@ -66,7 +66,7 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
 
 1. You can train your PixyCam to acquire targets (color signatures) or rely on the existing training. 
     - To train the PixyCam without using PixyMon, watch the first minute of this video https://youtu.be/XdQwZi6l9Ns.
-    - To train the PixyCam, add additional signatures, or modify camera settings, use [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe).  [(Pixy docs)](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:start)
+    - To train the PixyCam, add additional signatures, or modify camera settings using [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe), follow [(Pixy docs)](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:start)
     - Multiple color signatures can be trained but the default code treats any trained color as the enemy.
 2. You can modify the robot behaviors by adjusting the three variables at the top of the code. The comments in the code suggest acceptable ranges to use when making changes. The original settings are very conservative and lean towards being overly safe.  The three variables are:
     - SEARCH AGGRESSION variable determines how aggressively the robot searches for enemies.
