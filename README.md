@@ -68,12 +68,11 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
     - To train the PixyCam without using PixyMon, watch the first minute of this video https://youtu.be/XdQwZi6l9Ns.
     - To train the PixyCam, add additional signatures, or modify camera settings using [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe), follow [Pixy docs](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:start).
     - Multiple color signatures can be trained but the default code treats any trained color as the enemy.
-2. You can modify the robot behaviors by adjusting the three variables at the top of the code. The comments in the code suggest acceptable ranges to use when making changes. The original settings are very conservative and lean towards being overly safe.  The three variables are:
-    - SEARCH AGGRESSION variable determines how aggressively the robot searches for enemies.
+    - Upload the py201_red.prm configuration file found in the GLAWS folder.
+2. You can modify the robot behaviors by adjusting the three variables at the top of the code. The comments in the code suggest acceptable ranges to use when making changes. The original settings are very conservative and lean towards being overly safe. The three variables are:
+    - SEARCH AGGRESSION variable determines how aggressively the robot searches for enemy combatants.
     - DELIBERATION variable determines how long the robot takes to sense the environment and then act upon it.
-    - PERSISTENCE variable determines how persistent the robot is at attacking an enemy once it is identified.
+    - PERSISTENCE variable determines how persistent the robot is at attacking an enemy combatant once it is identified.
 3. After you make changes you must save your code and reload it on the Arduino.
 
-
 [1] Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,” (Department of Defense, 2012), 13.
-
