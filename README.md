@@ -6,7 +6,7 @@ The US Department of Defense defines an autonomous weapon as one that:
 
 As technologies improve, one can imagine that the autonomous weapons of the future might operate in ways that are considerably different from the weapons of today.
 
-![Alt Text](glaws_intro_v3.jpg)
+![Alt Text](glaws_intro_v2.JPG)
 
 GLAWS is a small, autonomous weapon used to study Just War Theory in PY201.  
 
