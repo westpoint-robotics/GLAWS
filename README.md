@@ -40,8 +40,8 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
     <!-- ![Ardiuno IDE graphic](arduino_ide.JPG) -->
 
 1. Get code assets.
-    - Click [GLAWS_AY22.zip](GLAWS_AY22.zip) to download the code.
-    - In your Downloads folder, right click the `GLAWS_AY22.zip` file and `Extract All`. Change the destination by clicking `Browse` and selecting `Documents\Arduino`.
+    - Click [GLAWS.zip](GLAWS.zip) and then 'Download'.
+    - In your Downloads folder, right click the `GLAWS.zip` file and `Extract All`. Change the destination by clicking `Browse` and selecting `Documents\Arduino`.
     - Copy the `GLAWS\libraries` folder to `Documents\Arduino`.
     - In the `GLAWS\Spear_Bot` folder, double-click the `Spear_Bot.ino` to open it in the Arduino IDE.
 
