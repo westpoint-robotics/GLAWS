@@ -88,7 +88,7 @@ You should be able to operate the robot using **only** the `SEARCH MODE`, `DELIB
 
 ![Alt Text](GLAWS_AdditionalParameters.png) 
 
-The most commonly modified parameters are shown in **yellow** and **green**. Yellow parameters affect how the robot searches for targets. Green parameters affect how the robot tracks targets
+The most commonly modified parameters are shown in **yellow** and **green**. Yellow parameters affect how the robot searches for targets. Green parameters affect how the robot tracks targets.
 
 1. Search Mode Parameters
     - `tilt_upper_limit` and `tilt_lower_limit` are the maximum and minimum positions of the tilt servo. These values are used when the robot is in Search Mode to control the camera tilt.
