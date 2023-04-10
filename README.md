@@ -40,7 +40,13 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
     <!-- ![Ardiuno IDE graphic](arduino_ide.JPG) -->
 
 1. Get code assets.
+
+    ![download graphic](download-glaws-assets.png)
+    - Browse to the [PY201 course folder](https://usarmywestpoint.sharepoint.com/:f:/r/sites/eecs.cadet/Shared%20Documents/Courses/PY201?csf=1&web=1&e=fBoII3)
+    - Select the GLAWS folder then click Download.
+
     - Click [GLAWS.zip](GLAWS.zip) and then 'Download'.
+
     - In your Downloads folder, right click the `GLAWS.zip` file and `Extract All`. Change the destination by clicking `Browse` and selecting `Documents\Arduino`.
     - Copy the `GLAWS\libraries` folder to `Documents\Arduino`.
     - In the `GLAWS\Spear_Bot` folder, double-click the `Spear_Bot.ino` to open it in the Arduino IDE.
