@@ -1,0 +1,24 @@
+1. Assemble the Zumo robot and Pixycam based on their documentation.
+
+2. Use two sets of stackable Arduino headers (or 2.54mm female headers with leads of comparable length) and do the following:
+
+	a) Remove the following four header pins from *both* of the 1x10 header pin: D7, D8, D9, D10
+
+	b) Solder one set of the header pins to the Arduino USB shield. Once you're done, do the following:
+
+		i) Solder jumper wires to the USB shield (e.g. 30 AWG wire) that make the following three connections: RST<-->D7, D2<-->D9, D4<-->D10
+
+		ii) Modify Line 58 of UsbCore.h to use pins D2 and D4 by changing the typedef command to be: typedef MAX3421e<P4, P2> MAX3421E;
+
+	c) Solder header pins onto the Zumo PCB for the following four pins: D7, D8, D9, D10
+
+3. Final Assembly of the robot:
+	a) Attach the non-soldered header pins to the Zumo PCB.
+
+	b) Attach the Arduino USB shield to the non-soldered header pins so that you have enough clearance to mount the Bluetooth Dongle into the USB Shield.
+
+	c) Insert the Bluetooth dongle into the USB Shield. You can pair the PS4 controller with the Bluetooth Dongle by using the PS4BT example sketch.
+
+	d) Insert the Arduino Uno into the USB Shield.
+
+	e) Jump pins D7, D8, D9, D10 from the Arduino to the header pins on the Zumo PCB.
