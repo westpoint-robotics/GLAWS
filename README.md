@@ -17,6 +17,11 @@ The system consists of:
 - color-tracking camera [PixyCam](https://www.adafruit.com/product/1906)
 - a spear-like primary weapon
 
+Addtionally, the system can be controlled with a Playstation 4 controller by adding the following components:
+- [Arduino Uno USB Shield](https://www.sparkfun.com/products/9947). Associated [GitHub Code](https://github.com/felis/USB_Host_Shield_2.0).
+- [Bluetooth 4.0 Dongle](https://www.adafruit.com/product/1327)
+- [Playstation 4 Controller](https://www.playstation.com/en-us/accessories/dualshock-4-wireless-controller/)
+
 Once powered-on, GLAWS searches for color signatures by panning and tilting the camera up and down, left and right much like a human searches for a target.  
 
 After a few seconds without finding a target, the robot may turn at a random angle or move and continues to scan.  
@@ -39,39 +44,39 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
 
     <!-- ![Ardiuno IDE graphic](arduino_ide.JPG) -->
 
-1. Get code assets.
+2. Get code assets.
 
     <img src="images/download_assets.png" alt="Download Repo" width="500" /> 
-    - Click the "code" button and select "download ZIP". Make sure that the current branch is set to "master".
-
-    - In your Downloads folder, right click the `GLAWS.zip` file and `Extract All`. Change the destination by clicking `Browse` and selecting `Documents\Arduino`.
-    - Copy the `GLAWS\libraries` folder to `Documents\Arduino`.
-    - In the `GLAWS\Spear_Bot` folder, double-click the `Spear_Bot.ino` to open it in the Arduino IDE.
-
-2. Select your Arduino board.
-    - Select `Arduino/Genuino Uno` in `Tools > Board`. See below images to identify your board.
-        <img src="board_select.jpg" alt="Board Select" width="500" /> 
-        <!-- <img src="arduino_leonS.jpg" alt="Leonardo" width="700" /> 
-        <img src="arduino_unoS.jpg" alt="Uno" width="700" /> -->
-
-3. Select your COM port (it may already be correctly selected).
-    - Select `COM3` (for example) in `Tools > Port` (it will typically be a higher number than 1).
-        <img src="port_select.jpg" alt="Board Select" width="500" />
-
-4. Upload your program.
     
-    <img src="upload_button.jpg" alt="Board Select" width="700" />
+    - Click the "code" button and select "download ZIP". Make sure that the current branch is set to "master". Alternatively, you can download the SpearBot Version 1.5 Release.
+    - In your Downloads folder, right click the `GLAWS.zip` file and `Extract All`.
+    - Navigate into the GLAWS/libraries directory. You should see the following folders: `Pixy, Spear_Bot_ps4, USB_Host_Shield_2.0-master, and ZumoMotors`. Copy these folders to your Arduino library folder (default location: Documents/Arduino/libraries).
+    - Navigate into the GLAWS directory. You should see the following folder: `Spear_Bot_ps4`. Copy this folder to your Arduino folder (default location: Documents/Arduino).
 
-5. Your Arduino should now be programmed to run with the default settings.
+3. Select your Arduino board.
+    - Select `Arduino/Genuino Uno` in `Tools > Board`.
+    
+        <img src="images/board_select.jpg" alt="Board Select" width="500" /> 
 
-6. Download and Install [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe) so that you can use the Pixycam. Pixymon documentation can be found here: [Pixy docs](https://docs.pixycam.com/wiki/doku.php?)
+4. Select your COM port (it may already be correctly selected).
+    - Select `COM13` (for example) in `Tools > Port` (it will typically be a higher number than 1).
+    
+        <img src="images/port_select.jpg" alt="Board Select" width="500" />
 
-7. Use Pixymon to find the **pan servo** position that aligns the camera with the robot's spear. You can use the command `rcs_setPos 0 xxx` in the Pixymon terminal to move the pan servo, where "xxx" is the servo position (0-1000) you want to move to. Note that you can move the **tilt servo** by using the command `rcs_setPos 1 xxx`. The robot's camera and spear **should** be aligned at pan servo position 500. If this is not the case, then you'll need to modify the `RCS_PAN_CENTER_POS` variable on `Line 51` of Spear_Bot.ino with the value that you computed. 
+5. Upload your program.
+    
+    <img src="images/upload_button.png" alt="Board Select" width="700" />
+
+6. Your Arduino should now be programmed to run with the default settings.
+
+7. Download and Install [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe) so that you can use the Pixycam. Pixymon documentation can be found here: [Pixy docs](https://docs.pixycam.com/wiki/doku.php?)
+
+8. Use Pixymon to find the **pan servo** position that aligns the camera with the robot's spear. You can use the command `rcs_setPos 0 xxx` in the Pixymon terminal to move the pan servo, where "xxx" is the servo position (0-1000) you want to move to. Note that you can move the **tilt servo** by using the command `rcs_setPos 1 xxx`. The robot's camera and spear **should** be aligned at pan servo position 500. If this is not the case, then you'll need to modify the `RCS_PAN_CENTER_POS` variable on `Line 51` of Spear_Bot.ino with the value that you computed. 
     - If the pan servo position is not in the range 475-525, then you should get the instructor to resolve this.
     - The image below shows an example of a robot that has its camera and spear aligned.
 
 
-![Alt Text](GLAWS_CenteredBalloon_Annotated.png)
+![Alt Text](images/GLAWS_CenteredBalloon_Annotated.png)
 
 ## Changing your robot's behaviors
 
