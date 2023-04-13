@@ -6,7 +6,7 @@ The US Department of Defense defines an autonomous weapon as one that:
 
 As technologies improve, one can imagine that the autonomous weapons of the future might operate in ways that are considerably different from the weapons of today.
 
-![Alt Text](glaws_intro_v2.JPG)
+![Alt Text](images/glaws_intro_v2.JPG)
 
 GLAWS is a small, autonomous weapon used to study Just War Theory in PY201.  
 
@@ -71,46 +71,68 @@ GLAWS is based on the [Pixypet](https://learn.adafruit.com/pixy-pet-robot-color-
 
 7. Download and Install [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe) so that you can use the Pixycam. Pixymon documentation can be found here: [Pixy docs](https://docs.pixycam.com/wiki/doku.php?)
 
-8. Use Pixymon to find the **pan servo** position that aligns the camera with the robot's spear. You can use the command `rcs_setPos 0 xxx` in the Pixymon terminal to move the pan servo, where "xxx" is the servo position (0-1000) you want to move to. Note that you can move the **tilt servo** by using the command `rcs_setPos 1 xxx`. The robot's camera and spear **should** be aligned at pan servo position 500. If this is not the case, then you'll need to modify the `RCS_PAN_CENTER_POS` variable on `Line 51` of Spear_Bot.ino with the value that you computed. 
+8. Use Pixymon to find the **pan servo** position that aligns the camera with the robot's spear. You can use the command `rcs_setPos 0 xxx` in the Pixymon terminal to move the pan servo, where "xxx" is the servo position (0-1000) you want to move to. Note that you can move the **tilt servo** by using the command `rcs_setPos 1 xxx`. The robot's camera and spear **should** be aligned at pan servo position 500. If this is not the case, then you'll need to modify the `RCS_PAN_CENTER_POS` variable in `Spear_Bot_ps4.h`. This file is located in your `Arduino/libraries/Spear_Bot_ps4.h` folder. A picture of the section that needs to be changed is located [HERE](images/pixy_params.png).
     - If the pan servo position is not in the range 475-525, then you should get the instructor to resolve this.
     - The image below shows an example of a robot that has its camera and spear aligned.
 
 
 ![Alt Text](images/GLAWS_CenteredBalloon_Annotated.png)
 
-## Changing your robot's behaviors
+## Training Color Signatures
 
-1. You can train your PixyCam to acquire targets (color signatures) or rely on the existing training. 
-    - To train the PixyCam without using PixyMon, watch the first minute of this video https://youtu.be/XdQwZi6l9Ns.
-    - To train the PixyCam, add additional signatures, or modify camera settings using [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe), follow [Pixy docs](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:start).
-    - Multiple color signatures can be trained but the default code treats any trained color as the enemy.
-    - Upload the py201_red.prm configuration file found in the GLAWS folder.
-2. You can modify the robot behaviors by adjusting the three variables at the top of the code. The comments in the code suggest acceptable ranges to use when making changes. The original settings are very conservative and lean towards being overly safe. The three variables are:
-    - `SEARCH MODE` variable determines how the robot searches for enemy combatants.
-    - `DELIBERATION` variable determines how long the robot takes to sense the environment and then act upon it.
-    - `PERSISTENCE` variable determines how persistent the robot is at attacking an enemy combatant once it is identified.
-3. After you make changes you must save your code and reload it on the Arduino.
+You can train your PixyCam to acquire targets (color signatures). 
 
-## Additional Robot Parameters
-You should be able to operate the robot using **only** the `SEARCH MODE`, `DELIBERATION`, and `PERSISTANCE` variables. With that said, there are additional robot parameters that could improve the performance of your robot. These additional robot parameters are shown in the image below:
+- To train the PixyCam without using PixyMon, watch the first minute of this video https://youtu.be/XdQwZi6l9Ns.
+    
+- To train the PixyCam, add additional signatures, or modify camera settings using [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe), follow [Pixy docs](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:start).
+    
+- Tentative color signatures can be found [HERE](images/Color_Signatures_v1.png).
+      
 
-![Alt Text](GLAWS_AdditionalParameters.png) 
+## Operating the SpearBot
+The robot (dubbed SpearBot) uses the PixyCam to identify and engage targets based on specified rules of engagement. Additionally, the robot can search for targets and operate at varying levels of autonomy. The robot can be controlled with (or without) a PS4 controller. 
 
-The most commonly modified parameters are shown in **yellow** and **green**. Yellow parameters affect how the robot searches for targets. Green parameters affect how the robot tracks targets.
+- Levels of Autonomy: This governs how the operator interacts with the robot
+    - `Semi-Autonomy w/ Teleoperation` (Human-in-the-loop): Operator teleoperates the robot. Operator must give engage order.
+    - `Semi-Autonomy w/o Teleoperation` (Human-in-the-loop): Robot automatically searches for targets. Operator must give engage order.
+    - `Supervised Autonomy` (Human-on-the-loop): Robot automatically searches for targets. Robot automatically engages targets. Operator can send commands to robot (e.g. stop engaging).
+    - `Full Autonomy` (Human-out-of-the-loop): Robot automatically searches for targets. Robot automatically engages targets. Operator **cannot** send commands to robot.
+    
+- Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
+    - `Disarmed` (Cyan Light): Robot cannot perform any actions.
+    - `Target Spotted` (Yellow Light): A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
+    - `Engaging Target` (Red Light): Robot is engaging a target.
+    
+- Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller.
+    - `Normal`: Commands can be sent to the robot from the controller.
+    - `Jammed`: Commands cannot be sent to the robot from the controller.
+    
+- Signature Types: Types of targets. A target type could have more than one associated color.
+    - `Friendly`: Friendly targets
+    - `Hostile`: Hostile targets
+    - `Neutral`: Neutral targets
+    - `Unknown`: Target's signature type is not known
+    - `Incoming Fire`: Target is firing upon robot.
+    - `Jammer`: Target is jamming robot.
+    
+- Rules of Engagement: Rules that govern whether a target can be attacked.
+    - `Hold Fire`: Robot will not engage target under any circumstance
+    - `Weapons Hold`: Robot will only engage targets that are attacking it (i.e. return fire).
+    - `Weapons Tight`: Robot will engage targets identified as `Hostile`.
+    - `Weapons Free`: Robot will engage targets identified as `Hostile or Unknown`.
+    
+- Search Modes: Search strategies for finding targets
+    - `Pan`: Pan camera left/right.
+    - `Pan_CCW`: Pan camera left/right. If a target is not found, pivot the robot's base **left**.
+    - `Pan_CW`: Pan camera left/right. If a target is not found, pivot the robot's base **right**.
+    - `Pan_FW`: Pan camera left/right. If a target is not found, move robot forward.
+    
+![Controller Layout 2](images/controller_layout2.png)
 
-1. Search Mode Parameters
-    - `tilt_upper_limit` and `tilt_lower_limit` are the maximum and minimum positions of the tilt servo. These values are used when the robot is in Search Mode to control the camera tilt.
-    - `scanIncrement` is the pan servo step size that the robot uses when it's in search mode. Increasing this value will decrease the amount of time it takes to sweep the camera left/right.
-2. Robot Speed Parameters
-    - `MAX_SPEED` and `MAX_REVERSE_SPEED` control how fast the robot moves.
-3. Object Tracking Parameters
-    - `Kp_p` and `Kp_d` are the proportional and derivative gains of the PD controller that controls the pan servo. These parameters are used to pan the camera while tracking objects.
-    - `Kp_t` and `Kp_t` are the proportional and derivative gains of the PD controller that controls the tilt servo. These parameters are used to tilt the camera while tracking objects.
-    - `Kp_f` and `Kd_f` are the proportional and derivative gains of the PD controller that controls the motors. These parameters are used to determine motor speeds while following objects.
-4. Pixycam Camera/Servo Parameters
-    - `X_CENTER` and `Y_CENTER` are the center of the Pixycam. You should not need to change this variable **unless** you are using a Pixycam2 instead of a Pixycam.
-    - `RCS_MIN_POS` and `RCS_MAX_POS` are the minimum and maximum positions of the Pixycam's servo. These values should not need to be changed
-    - `RCS_PAN_CENTER_POS` and `RCS_TILT_CENTER_POS` are the center positions of the pan and tilt servos. The robot uses `RCS_PAN_CENTER_POS` to compute heading error when chasing targets. As such, it is **imperative** that this value be the servo position that aligns the robot's camera with the robot's spear.
+The robot can be controller with (or without) a controller. 
+
+## SpearBot Parameters
+![SpearBot Parameters](images/Parameters.png)
 
 ## References
 [1] Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,” (Department of Defense, 2012), 13.
