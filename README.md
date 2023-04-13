@@ -90,23 +90,23 @@ You can train your PixyCam to acquire targets (color signatures).
       
 
 ## Operating the SpearBot
-The robot (dubbed SpearBot) uses the PixyCam to identify and engage targets based on specified rules of engagement. Additionally, the robot can search for targets and operate at varying levels of autonomy. The robot can be controlled with (or without) a PS4 controller. 
+The robot (dubbed SpearBot) uses the PixyCam to identify and engage targets based on specified rules of engagement. Additionally, the robot can search for targets and operate at varying levels of autonomy. The robot can be controlled with (or without) a PS4 controller.
 
-- Levels of Autonomy: This governs how the operator interacts with the robot
+- Levels of Autonomy: This governs how the operator interacts with the robot. Levels of autonomy are denoted by an LED color when using a PS4 controller.
     - `Semi-Autonomy w/ Teleoperation` (Human-in-the-loop): Operator teleoperates the robot. Operator must give engage order.
     - `Semi-Autonomy w/o Teleoperation` (Human-in-the-loop): Robot automatically searches for targets. Operator must give engage order.
     - `Supervised Autonomy` (Human-on-the-loop): Robot automatically searches for targets. Robot automatically engages targets. Operator can send commands to robot (e.g. stop engaging).
     - `Full Autonomy` (Human-out-of-the-loop): Robot automatically searches for targets. Robot automatically engages targets. Operator **cannot** send commands to robot.
     
 - Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
-    - `Disarmed` (Cyan Light): Robot cannot perform any actions.
-    - `Target Spotted` (Yellow Light): A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
-    - `Engaging Target` (Red Light): Robot is engaging a target.
+    - `Disarmed`: Robot cannot perform any actions.
+    - `Target Spotted`: A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
+    - `Engaging Target`: Robot is engaging a target.
     
-- Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller.
+- Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller. 
     - `Normal`: Commands can be sent to the robot from the controller.
-    - `Jammed`: Commands cannot be sent to the robot from the controller.
-    
+    - `Jammed`: Commands cannot be sent to the robot from the controller. Operator can temporarily unjam the link by deploying ECCM.
+
 - Signature Types: Types of targets. A target type could have more than one associated color.
     - `Friendly`: Friendly targets
     - `Hostile`: Hostile targets
@@ -121,18 +121,48 @@ The robot (dubbed SpearBot) uses the PixyCam to identify and engage targets base
     - `Weapons Tight`: Robot will engage targets identified as `Hostile`.
     - `Weapons Free`: Robot will engage targets identified as `Hostile or Unknown`.
     
-- Search Modes: Search strategies for finding targets
+- Search Modes: Search strategies for finding targets.
     - `Pan`: Pan camera left/right.
     - `Pan_CCW`: Pan camera left/right. If a target is not found, pivot the robot's base **left**.
     - `Pan_CW`: Pan camera left/right. If a target is not found, pivot the robot's base **right**.
     - `Pan_FW`: Pan camera left/right. If a target is not found, move robot forward.
-    
+
+## PS4 Controller
+The robot can be operated with a PS4 controller as follows:
+
 ![Controller Layout 2](images/controller_layout2.png)
 
-The robot can be controller with (or without) a controller. 
 
 ## SpearBot Parameters
 ![SpearBot Parameters](images/Parameters.png)
+
+Parameters that can be tuned for the SpearBot in `Spear_Bot_ps4.ino`. They are color-coded based on functionality:
+
+- `Green`: Robot functionality - Valid values are as follows:
+    - `Robot's Level of Autonomy`: SEMI_AUTONOMY_TELEOP, SEMI_AUTONOMY, SUPERVISED_AUTONOMY, FULL_AUTONOMY
+    - `Robot's Intertface`: NORMAL, JAMMED
+    - `Rules of Engagement`: HOLD_FIRE, WEAPONS_HOLD, WEAPONS_TIGHT, WEAPONS_FREE
+    - `Search Modes`: PAN, PAN_CW, PAN_CCW, PAN_FW
+
+- `Purple`: Jamming Parameters
+    - `ECCM`: Number of times that ECCM can be activated.
+    - `ECCM Duration`: Duration of ECCM.
+    - `robot_unjammable`: Flag denoting whether robot can be jammed.
+    - `finite_actions`: Flag denoting whether there are a finite number of actions (e.g. changes in levels of autonomy, search mode, rules of engagement, etc.) that can be sent to the robot before the link is permenantly jammed.
+    - `actions_remaining`: Number of actions that can be issued if there are a finite number of robot actions.
+    
+- `Blue`: Color Signatures
+    - `UNUSED`: Signature has not been defined for PixyCam
+    - Remaining signatures are as [previously defined](#operating-the-spearbot).
+    
+- `Red`: Other Parameters
+    - `Persistence`: Governs how long robot continues to chase a target after it has lost track of it.
+
+- `Yellow`: Controller Parameters
+    - `use_controller`: Flag denoting whether PS4 controller is being used.    
+    - `deadzone_l and deadzone_r`: How far the joysticks must be pushed from the center point before the robot starts moving. Only applicable when Teleoperating robot.
+    - `sensitivity_l and sensitivity_r`: Sensitivity of joysticks.
+    - `invX_l, invY_l, invX_r, invY_r`: Flags denoting whether joystick axes will be non-inverted/inverted.
 
 ## References
 [1] Department of Defense, “Directive on Autonomy in Weapons Systems, Number 3000.09,” (Department of Defense, 2012), 13.
