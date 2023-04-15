@@ -21,8 +21,8 @@ The GLAWS system consists of a:
 - spear-like primary weapon
 
 Once powered-on, GLAWS searches for color signatures by panning and tilting the camera,much like a human searches for a target.  
-After a few seconds without finding a target, the robot may turn at a random angle or move and continues to scan.  
-Color signatures are trained for the Pixycam and the camera calculates the area of the color signature to generate a rough estimate of distance to the target.  
+After a few seconds of scanning and not finding a target, the robot turns at a random angle and/or move to continue scanning.  
+Color signatures are trained for the PixyCam.  The camera calculates the area of the color signature to generate a rough estimate of distance to the target.  
 Once a color signature is detected, the robot aligns its chassis with the pan servo and then moves towards the target.  
 A controller (much like the cruise control on an automobile) allows the robot to move to the target and stop at a pre-described distance. This distance is such that the spear tip will have punctured a balloon (target).
 
