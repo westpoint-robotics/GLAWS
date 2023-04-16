@@ -151,3 +151,4 @@ There are variables that can be tuned in the `Spear_Bot_ps4.ino` code. They are 
 
 ## References
 [1] [Department of Defense Directive 3000.09 on "Autonomy In Weapons Systems”](https://www.defense.gov/News/Releases/Release/Article/3278076/dod-announces-update-to-dod-directive-300009-autonomy-in-weapon-systems/).
+[2] [DoD Ethical Principals for AI](https://www.defense.gov/News/Releases/Release/Article/2091996/dod-adopts-ethical-principles-for-artificial-intelligence/)
