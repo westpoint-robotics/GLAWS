@@ -69,8 +69,6 @@ A controller (much like the cruise control on an automobile) allows the robot to
 
 3. Training Color Signatures
 The SpearBot uses the PixyCam to identify and engage targets. You can train your PixyCam to acquire targets (specific color signatures). 
-    - To train the PixyCam without using PixyMon, watch the first minute of this video https://youtu.be/XdQwZi6l9Ns.
-    
     - To train the PixyCam, add additional signatures, or modify camera settings using PixyMon, follow [Pixy docs](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:teach_pixy_an_object_2).
     
     - Color signatures that may be used in exercise scenarios can be found [here](images/Color_Signatures_v1.png).
