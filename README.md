@@ -76,45 +76,44 @@ The SpearBot uses the PixyCam to identify and engage targets. You can train your
 ## Operating the SpearBot
 The robot can search for targets and operate at varying levels of autonomy based on specified rules of engagement. In addition to the built in autonomy, he robot can be controlled with (or without) a PS4 controller.
 1. Levels of Autonomy: This governs how the operator interacts with the robot. Levels of autonomy are denoted by an LED color when using a PS4 controller.
-    - `Semi-Autonomy w/ Teleoperation` (Human-in-the-loop): Operator teleoperates the robot. Operator must give engage order.
-    - `Semi-Autonomy w/o Teleoperation` (Human-in-the-loop): Robot automatically searches for targets. Operator must give engage order.
-    - `Supervised Autonomy` (Human-on-the-loop): Robot automatically searches for targets. Robot automatically engages targets. Operator can send commands to robot (e.g. stop engaging).
-    - `Full Autonomy` (Human-out-of-the-loop): Robot automatically searches for targets. Robot automatically engages targets. Operator **cannot** send commands to robot.
+    - `SEMI_AUTONOMY_TELEOP`: Teleoperation through the joystick (Human-in-the-loop) - Operator controls all functions of the robot. Operator must give engage order.
+    - `SEMI_AUTONOMY`: Semi-Autonomy (Human-in-the-loop) - Robot automatically searches for targets. Operator must give engage order.
+    - `SUPERVISED_AUTONOMY`: Human-on-the-loop, robot automatically searches for targets. Robot automatically engages targets. Operator can send commands to robot (e.g. stop engaging).
+    - `FULL_AUTONOMY`: Human-out-of-the-loop, robot automatically searches for targets. Robot automatically engages targets. Operator **cannot** send commands to robot.
     
 2. Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
-    - `Disarmed`: Robot cannot perform any actions.
-    - `Target Spotted`: A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
-    - `Engaging Target`: Robot is engaging a target.
+    - `DISARMED`: Robot cannot perform any actions.
+    - `TARGET_SPOTTED`: A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
+    - `ENGAGING_TARGET`: Robot is engaging a target.
     
 3. Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller. 
-    - `Normal`: Commands can be sent to the robot from the controller.
-    - `Jammed`: Commands cannot be sent to the robot from the controller. Operator can temporarily unjam the link by deploying ECCM.
+    - `NORMAL`: Commands can be sent to the robot from the controller.
+    - `JAMMED`: Commands cannot be sent to the robot from the controller. Operator can temporarily unjam the link by deploying ECCM.
 
 4. Signature Types: Types of targets. A target type could have more than one associated color.
-    - `Friendly`: Friendly targets
-    - `Hostile`: Hostile targets
-    - `Neutral`: Neutral targets
-    - `Unknown`: Target's signature type is not known
-    - `Incoming Fire`: Target is firing upon robot.
-    - `Jammer`: Target is jamming robot.
+    - `FRIENDLY`: Friendly targets
+    - `HOSTILE`: Hostile targets
+    - `NEUTRAL`: Neutral targets
+    - `UNKNOWN`: Target's signature type is not known
+    - `INCOMING_FIRE`: Target is firing upon robot.
+    - `JAMMER`: Target is jamming robot.
     
 5. Rules of Engagement: Rules that govern whether a target can be attacked.
-    - `Hold Fire`: Robot will not engage target under any circumstance
-    - `Weapons Hold`: Robot will only engage targets that are attacking it (i.e. return fire).
-    - `Weapons Tight`: Robot will engage targets identified as `Hostile`.
-    - `Weapons Free`: Robot will engage targets identified as `Hostile or Unknown`.
+    - `HOLD_FIRE`: Robot will not engage target under any circumstance
+    - `WEAPONS_HOLD`: Robot will only engage targets that are attacking it (i.e. return fire).
+    - `WEAPONS_TIGHT`: Robot will engage targets identified as `Hostile`.
+    - `WEAPONS_FREE`: Robot will engage targets identified as `Hostile or Unknown`.
     
 6. Search Modes: Search strategies for finding targets.
-    - `Pan`: Pan camera left/right.
-    - `Pan_CCW`: Pan camera left/right. If a target is not found, pivot the robot's base **left**.
-    - `Pan_CW`: Pan camera left/right. If a target is not found, pivot the robot's base **right**.
-    - `Pan_FW`: Pan camera left/right. If a target is not found, move robot forward.
+    - `PAN`: Pan camera left/right.
+    - `PAN_CCW`: Pan camera left/right. If a target is not found, pivot the robot's base **left**.
+    - `PAN_CW`: Pan camera left/right. If a target is not found, pivot the robot's base **right**.
+    - `PAN_FW`: Pan camera left/right. If a target is not found, move robot forward.
 
 ### PS4 Controller
 The robot can be operated with a PS4 controller as follows:
 
 ![Controller Layout 2](images/controller_layout2.png)
-
 
 ### Arduino Parameters
 ![SpearBot Parameters](images/Parameters.png)
