@@ -32,7 +32,7 @@ A controller (much like the cruise control on an automobile) allows the robot to
 
 ## Setup and Configuration 
 ### Arduino
-1. [Download Arduino IDE](https://downloads.arduino.cc/arduino-1.8.19-windows.exe) - This software is used to program the robot's brain, the Arduino microcontroller. Run the executable file to install the software. Installation instructions can be found [here](https://docs.arduino.cc/software/ide-v1/tutorials/Windows). The Arduino microcontroller connects to a computer over a USB cable and receives code from the Arduino IDE.
+1. [Download Arduino IDE](https://downloads.arduino.cc/arduino-1.8.19-windows.exe) (Legacy version, not 2.2)- This software is used to program the robot's brain, the Arduino microcontroller. Run the executable file to install the software. Installation instructions can be found [here](https://docs.arduino.cc/software/ide-v1/tutorials/Windows). The Arduino microcontroller connects to a computer over a USB cable and receives code from the Arduino IDE.
 <img src="https://i0.wp.com/www.programmingelectronics.com/wp-content/uploads/2012/08/Figure-1.Arduino-Sketch-with-shorcut-keys.jpg" alt="IDE1 Layout" width="500" /> 
 
 2. Get Arduino Code - Download files from this GitHub repository.
