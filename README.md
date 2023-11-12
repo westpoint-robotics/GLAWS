@@ -76,21 +76,23 @@ The SpearBot uses the PixyCam to identify and engage targets. You can train your
 ## Operating the SpearBot
 The robot can search for targets and operate at varying levels of autonomy based on specified rules of engagement. In addition to the built in autonomy, he robot can be controlled with (or without) a PS4 controller.
 1. Levels of Autonomy: This governs how the operator interacts with the robot. Levels of autonomy are denoted by an LED color when using a PS4 controller.
-    - `SEMI_AUTONOMY_TELEOP`: Teleoperation through the joystick (Human-in-the-loop) - Operator controls all functions of the robot. Operator must give engage order.
-    - `SEMI_AUTONOMY`: Semi-Autonomy (Human-in-the-loop) - Robot automatically searches for targets. Operator must give engage order.
-    - `SUPERVISED_AUTONOMY`: Human-on-the-loop, robot automatically searches for targets. Robot automatically engages targets. Operator can send commands to robot (e.g. stop engaging).
-    - `FULL_AUTONOMY`: Human-out-of-the-loop, robot automatically searches for targets. Robot automatically engages targets. Operator **cannot** send commands to robot.
-    
-2. Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
+    - `TELEOP/MANUAL`: The operator controls all functions of the robot, through teleoperation from the joystick, for both chassis movement and camera pan-tilt.
+    - `SEMI_AUTONOMY`: The robot automatically searches for targets. The operator must give an engage order. (Human-in-the-loop)
+    - `SUPERVISED_AUTONOMY`: The robot automatically searches for targets and automatically engages targets. The operator may send a disengage command to the robot. (Human-on-the-loop)
+    - `FULL_AUTONOMY`: The robot automatically searches for targets and automatically engages targets. Once the robot has entered this mode, the operator **cannot** send any commands to the robot. (Human-out-of-the-loop)
+      
+    < --- 121815NOV23: Need to update from here --->
+   
+3. Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
     - `DISARMED`: Robot cannot perform any actions.
     - `TARGET_SPOTTED`: A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
-    - `ENGAGING_TARGET`: Robot is engaging a target.
+    - `ENGAGING_TARGET`: The robot is engaging a target.
     
-3. Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller. 
+4. Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller. 
     - `NORMAL`: Commands can be sent to the robot from the controller.
     - `JAMMED`: Commands cannot be sent to the robot from the controller. Operator can temporarily unjam the link by deploying ECCM.
 
-4. Signature Types: Types of targets. A target type could have more than one associated color.
+5. Signature Types: Types of targets. A target type could have more than one associated color.
     - `FRIENDLY`: Friendly targets
     - `HOSTILE`: Hostile targets
     - `NEUTRAL`: Neutral targets
@@ -98,13 +100,13 @@ The robot can search for targets and operate at varying levels of autonomy based
     - `INCOMING_FIRE`: Target is firing upon robot.
     - `JAMMER`: Target is jamming robot.
     
-5. Rules of Engagement: Rules that govern whether a target can be attacked.
+6. Rules of Engagement: Rules that govern whether a target can be attacked.
     - `HOLD_FIRE`: Robot will not engage target under any circumstance
     - `WEAPONS_HOLD`: Robot will only engage targets that are attacking it (i.e. return fire).
     - `WEAPONS_TIGHT`: Robot will engage targets identified as `Hostile`.
     - `WEAPONS_FREE`: Robot will engage targets identified as `Hostile or Unknown`.
     
-6. Search Modes: Search strategies for finding targets.
+7. Search Modes: Search strategies for finding targets.
     - `PAN`: Pan camera left/right.
     - `PAN_CCW`: Pan camera left/right. If a target is not found, pivot the robot's base **left**.
     - `PAN_CW`: Pan camera left/right. If a target is not found, pivot the robot's base **right**.
