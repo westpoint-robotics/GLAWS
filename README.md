@@ -118,7 +118,7 @@ The robot can be operated with a PS4 controller as follows:
 ![Controller Layout 2](images/controller_layout_ay24-1.png)
 
 ### Arduino Parameters
-![SpearBot Parameters](images/Parameters.png)
+![SpearBot Parameters](images/Parameters_ay24-1.png)
 
 There are variables that can be tuned in the `Spear_Bot_ps4.ino` code. They are color-coded based on functionality:
 
