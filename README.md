@@ -76,7 +76,7 @@ The SpearBot uses the PixyCam to identify and engage targets. You can train your
 ## Operating the SpearBot
 The robot can search for targets and operate at varying levels of autonomy based on specified rules of engagement. In addition to the built in autonomy, he robot can be controlled with (or without) a PS4 controller.
 1. Levels of Autonomy: This governs how the operator interacts with the robot. Levels of autonomy are denoted by an LED color when using a PS4 controller.
-    - `TELEOP/MANUAL`: The operator controls all functions of the robot, through teleoperation from the joystick, for both chassis movement and camera pan-tilt.
+    - `TELEOP`: The operator controls all functions of the robot, through teleoperation from the joystick, for both chassis movement and camera pan-tilt. There is **no** autonomy in this mode (e.g. Engaging targets).
     - `SEMI_AUTONOMY`: The robot automatically searches for targets. The operator must give an engage order. (Human-in-the-loop)
     - `SUPERVISED_AUTONOMY`: The robot automatically searches for targets and automatically engages targets. The operator may send a disengage command to the robot. (Human-on-the-loop)
     - `FULL_AUTONOMY`: The robot automatically searches for targets and automatically engages targets. Once the robot has entered this mode, the operator **cannot** send any commands to the robot. (Human-out-of-the-loop)
@@ -123,7 +123,7 @@ The robot can be operated with a PS4 controller as follows:
 There are variables that can be tuned in the `Spear_Bot_ps4.ino` code. They are color-coded based on functionality:
 
 1. `Green`: Robot functionality - Valid values are as follows:
-    - `Robot's Level of Autonomy`: SEMI_AUTONOMY_TELEOP, SEMI_AUTONOMY, SUPERVISED_AUTONOMY, FULL_AUTONOMY
+    - `Robot's Level of Autonomy`: TELEOP, SEMI_AUTONOMY, SUPERVISED_AUTONOMY, FULL_AUTONOMY
     - `Robot's Intertface`: NORMAL, JAMMED
     - `Rules of Engagement`: HOLD_FIRE, WEAPONS_HOLD, WEAPONS_TIGHT, WEAPONS_FREE
     - `Search Modes`: PAN, PAN_CW, PAN_CCW, PAN_FW
