@@ -6,7 +6,7 @@ The US Department of Defense defines an autonomous weapon as one that:
 
 As technologies improve, one can imagine that the autonomous weapons of the future might operate in ways that are considerably different from the weapons of today.
 
-GLAWS (aka SpearBot) is a small, open-source, autonomous weapon prototype used to study the ethics and moral considerations of weapon systems. It is a learning platform that is based on the [Pixy Pet](https://learn.adafruit.com/pixy-pet-robot-color-vision-follower-using-pixycam/overview) project, and was developed to provide technical insights of implementating Just War Theory, Law of Armed Conflict, International Humanitarian Law, and Rules of Engagement.
+GLAWS (aka SpearBot) is a small, open-source, autonomous weapon prototype used to study the ethics and moral considerations of weapon systems. It is a learning platform that is based on the [Pixy Pet](https://learn.adafruit.com/pixy-pet-robot-color-vision-follower-using-pixycam/overview) project and was developed to provide technical insights into implementing Just War Theory, Law of Armed Conflict, International Humanitarian Law, and Rules of Engagement.
 
 ![Alt Text](images/glaws_intro_v2.JPG)
 
