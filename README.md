@@ -115,7 +115,7 @@ The robot can search for targets and operate at varying levels of autonomy based
 ### PS4 Controller
 The robot can be operated with a PS4 controller as follows:
 
-![Controller Layout 2](images/controller_layout2.png)
+![Controller Layout 2](images/controller_layout_ay24-1.png)
 
 ### Arduino Parameters
 ![SpearBot Parameters](images/Parameters.png)
