@@ -85,7 +85,7 @@ The robot can search for targets and operate at varying levels of autonomy based
    
 3. Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
     - `DISARMED`: Robot cannot perform any actions.
-    - `TARGET_SPOTTED`: A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
+    - `TARGET_SPOTTED`: A valid target has been spotted. In `semi-autonomous` mode, the robot can be issued an `engage order` to attack the target.
     - `ENGAGING_TARGET`: The robot is engaging a target.
     
 4. Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller. 
