@@ -20,10 +20,10 @@ The GLAWS system consists of a:
 - USB Joystick [PS4 Dual Shock controller](https://direct.playstation.com/en-us/accessories/accessory/dualshock4-wireless-controller-for-ps4-jet-black.3001538)
 - spear-like primary weapon
 
-Once powered-on, GLAWS searches for color signatures by panning and tilting the camera,much like a human searches for a target.  
-After a few seconds of scanning and not finding a target, the robot turns at a random angle and/or move to continue scanning.  
-Color signatures are trained for the PixyCam.  The camera calculates the area of the color signature to generate a rough estimate of distance to the target.  
-Once a color signature is detected, the robot aligns its chassis with the pan servo and then moves towards the target.  
+Once powered on, GLAWS searches for color signatures by panning and tilting the camera, much like a human searches for a target.  
+After a few seconds of scanning and not finding a target, the robot turns at a random angle and/or moves to continue scanning.  
+Color signatures are trained for the PixyCam.  The camera calculates the area of the color signature to generate a rough estimate of the distance to the target.  
+Once a color signature is detected, the robot aligns its chassis with the pan servo and then moves toward the target.  
 A controller (much like the cruise control on an automobile) allows the robot to move to the target and stop at a pre-described distance. This distance is such that the spear tip will have punctured a balloon (target).
 
 <a href="http://www.youtube.com/watch?feature=player_embedded&v=roc7H93mOOQ" target="_blank">
@@ -37,12 +37,12 @@ A controller (much like the cruise control on an automobile) allows the robot to
 
 2. Get Arduino Code - Download files from this GitHub repository.
     - a) Ensure that you are viewing the **`master`** branch of this repository, depicted by the drop-down menu on the top left corner of this page.
-    - b) Cilck on the green **`Code`** button present on the top right corner of this page and then click **`Download ZIP`**.
+    - b) Click on the green **`Code`** button present on the top right corner of this page and then click **`Download ZIP`**.
     - c) Choose a location on your computer to download this zipped file, typically the 'Downloads' folder.
     
     <img src="images/download_assets.png" alt="Download Repo" width="500" />
     
-    - d) After download completes, extract the folder `GLAWS-master.zip` by right-clicking on the zipped folder and clicking 'Extract All..'.
+    - d) After the download completes, extract the folder `GLAWS-master.zip` by right-clicking on the zipped folder and clicking 'Extract All..'.
     - e) After extracting the folder, navigate into the `GLAWS-master\libraries` directory. You should see the following folders: `Pixy, Spear_Bot_ps4, USB_Host_Shield_2.0-master, and ZumoMotors`. Copy these four folders to your Arduino library folder (default location is C:\Users\first.last\Documents\Arduino\libraries).
 
 3. Program the Arduino
@@ -53,7 +53,7 @@ A controller (much like the cruise control on an automobile) allows the robot to
     - c) Select the COM port (it may already be correctly selected): `Tools > Port > COM13 (Arduino Uno)`.
     <img src="images/port_select.jpg" alt="Board Select" width="500" />
     
-    - d) Upload the program: click on the arrow button next to the check mark (verify button) in the tool bar.
+    - d) Upload the program: click on the arrow button next to the check mark (verify button) in the toolbar.
     <img src="images/upload_button.png" alt="Board Select" width="700" />
     
     - e) After upload completes, the Arduino (and robot) should be programmed to run with the default settings.
@@ -74,65 +74,63 @@ The SpearBot uses the PixyCam to identify and engage targets. You can train your
     - Color signatures that may be used in exercise scenarios can be found [here](images/Color_Signatures_v1.png).
 
 ## Operating the SpearBot
-The robot can search for targets and operate at varying levels of autonomy based on specified rules of engagement. In addition to the built in autonomy, he robot can be controlled with (or without) a PS4 controller.
+The robot can search for targets and operate at varying levels of autonomy based on specified rules of engagement. In addition to the built-in autonomy, the robot can be controlled with (or without) a PS4 controller.
 1. Levels of Autonomy: This governs how the operator interacts with the robot. Levels of autonomy are denoted by an LED color when using a PS4 controller.
-    - `TELEOP/MANUAL`: The operator controls all functions of the robot, through teleoperation from the joystick, for both chassis movement and camera pan-tilt.
+    - `TELEOP`: The operator controls all functions of the robot, through teleoperation from the joystick, for both chassis movement and camera pan-tilt. There is **no** autonomy in this mode (e.g. Engaging targets).
     - `SEMI_AUTONOMY`: The robot automatically searches for targets. The operator must give an engage order. (Human-in-the-loop)
     - `SUPERVISED_AUTONOMY`: The robot automatically searches for targets and automatically engages targets. The operator may send a disengage command to the robot. (Human-on-the-loop)
     - `FULL_AUTONOMY`: The robot automatically searches for targets and automatically engages targets. Once the robot has entered this mode, the operator **cannot** send any commands to the robot. (Human-out-of-the-loop)
-      
-    < --- 121815NOV23: Need to update from here --->
    
-3. Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
+2. Robot States: The robot's state affects its behavior. It is closely tied to the `levels of autonomy` and denoted by an LED color if you're using the PS4 controller.
     - `DISARMED`: Robot cannot perform any actions.
-    - `TARGET_SPOTTED`: A valid target has been spotted and the robot is waiting for an `engage order`. This state is only used when the robot is `semi-autonomous`.
+    - `TARGET_SPOTTED`: A valid target has been spotted. In `semi-autonomous` mode, the robot can be issued an `engage order` to attack the target.
     - `ENGAGING_TARGET`: The robot is engaging a target.
     
-4. Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller. 
+3. Robot Interface: The status of the link that you have with the robot. Only applicable when using a PS4 controller. 
     - `NORMAL`: Commands can be sent to the robot from the controller.
-    - `JAMMED`: Commands cannot be sent to the robot from the controller. Operator can temporarily unjam the link by deploying ECCM.
+    - `JAMMED`: Commands cannot be sent to the robot from the controller.
 
-5. Signature Types: Types of targets. A target type could have more than one associated color.
+4. Signature Types: Types of targets. A target type could have more than one associated color.
     - `FRIENDLY`: Friendly targets
     - `HOSTILE`: Hostile targets
     - `NEUTRAL`: Neutral targets
-    - `UNKNOWN`: Target's signature type is not known
-    - `INCOMING_FIRE`: Target is firing upon robot.
-    - `JAMMER`: Target is jamming robot.
+    - `UNKNOWN`: The target's signature type is not known
+    - `INCOMING_FIRE`: A target is firing upon the robot.
+    - `JAMMER`: A target is jamming the robot.
     
-6. Rules of Engagement: Rules that govern whether a target can be attacked.
-    - `HOLD_FIRE`: Robot will not engage target under any circumstance
+5. Rules of Engagement: Rules that govern whether a target can be attacked.
+    - `HOLD_FIRE`: Robot will not engage a target under any circumstance
     - `WEAPONS_HOLD`: Robot will only engage targets that are attacking it (i.e. return fire).
     - `WEAPONS_TIGHT`: Robot will engage targets identified as `Hostile`.
     - `WEAPONS_FREE`: Robot will engage targets identified as `Hostile or Unknown`.
     
-7. Search Modes: Search strategies for finding targets.
+6. Search Modes: Search strategies for finding targets.
     - `PAN`: Pan camera left/right.
     - `PAN_CCW`: Pan camera left/right. If a target is not found, pivot the robot's base **left**.
     - `PAN_CW`: Pan camera left/right. If a target is not found, pivot the robot's base **right**.
-    - `PAN_FW`: Pan camera left/right. If a target is not found, move robot forward.
+    - `PAN_FW`: Pan camera left/right. If a target is not found, move the robot forward.
 
 ### PS4 Controller
 The robot can be operated with a PS4 controller as follows:
 
-![Controller Layout 2](images/controller_layout2.png)
+![Controller Layout 2](images/controller_layout_ay24-1.png)
 
 ### Arduino Parameters
-![SpearBot Parameters](images/Parameters.png)
+![SpearBot Parameters](images/parameters_ay24-1.png)
 
 There are variables that can be tuned in the `Spear_Bot_ps4.ino` code. They are color-coded based on functionality:
 
 1. `Green`: Robot functionality - Valid values are as follows:
-    - `Robot's Level of Autonomy`: SEMI_AUTONOMY_TELEOP, SEMI_AUTONOMY, SUPERVISED_AUTONOMY, FULL_AUTONOMY
-    - `Robot's Intertface`: NORMAL, JAMMED
+    - `Robot's Level of Autonomy`: TELEOP, SEMI_AUTONOMY, SUPERVISED_AUTONOMY, FULL_AUTONOMY
+    - `Robot's Interface`: NORMAL, JAMMED
     - `Rules of Engagement`: HOLD_FIRE, WEAPONS_HOLD, WEAPONS_TIGHT, WEAPONS_FREE
     - `Search Modes`: PAN, PAN_CW, PAN_CCW, PAN_FW
 
 2. `Purple`: Jamming Parameters
-    - `ECCM`: Number of times that ECCM can be activated.
+    - `ECCM`: Number of times that electronic countermeasures can be activated.
     - `ECCM Duration`: Duration of ECCM.
-    - `robot_unjammable`: Flag denoting whether robot can be jammed.
-    - `finite_actions`: Flag denoting whether there are a finite number of actions (e.g. changes in levels of autonomy, search mode, rules of engagement, etc.) that can be sent to the robot before the link is permenantly jammed.
+    - `robot_unjammable`: Flag denoting whether the robot can be jammed.
+    - `finite_actions`: Flag denoting whether there are a finite number of actions (e.g. changes in levels of autonomy, search mode, rules of engagement, etc.) that can be sent to the robot before the link is permanently jammed.
     - `actions_remaining`: Number of actions that can be issued if there are a finite number of robot actions.
     
 3. `Blue`: Color Signatures
@@ -140,10 +138,10 @@ There are variables that can be tuned in the `Spear_Bot_ps4.ino` code. They are 
     - Remaining signatures are as [previously defined](#operating-the-spearbot).
     
 4. `Red`: Other Parameters
-    - `Persistence`: Governs how long robot continues to chase a target after it has lost track of it.
+    - `Persistence`: Governs how long the robot continues to chase a target after it has lost track of it.
 
 5. `Yellow`: Controller Parameters
-    - `use_controller`: Flag denoting whether PS4 controller is being used.    
+    - `use_controller`: Flag denoting whether the PS4 controller is being used.    
     - `deadzone_l and deadzone_r`: How far the joysticks must be pushed from the center point before the robot starts moving. Only applicable when Teleoperating robot.
     - `sensitivity_l and sensitivity_r`: Sensitivity of joysticks.
     - `invX_l, invY_l, invX_r, invY_r`: Flags denoting whether joystick axes will be non-inverted/inverted.

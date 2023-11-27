@@ -1,10 +1,12 @@
 //====================================================================================================================================================
-// Spear_Bot_ps4.ino
+// glaws15.ino
 //
 // This program detects different-colored objects and engages them based on user-specified rules of engagement. A wireless Playstation 4 controller 
 // can be used to control the robot, if desired.
 //
 // See controller_layout.pdf for controller layout. Addtional program settings can be found in: Arduino/libraries/Spear_Bot_ps4/Spear_Bot_ps4.h
+//
+// Last Updated: November 21, 2023
 //====================================================================================================================================================
 
 #include <Spear_Bot_ps4.h>
@@ -16,12 +18,17 @@
 //
 **********************************************************/
 
-ROBOT_AUTONOMY        robot_autonomy      =   SEMI_AUTONOMY_TELEOP;   //Robot's autonomy 
+ROBOT_AUTONOMY        robot_autonomy      =   TELEOP;                 //Robot's autonomy 
 ROBOT_INTERFACE       robot_interface     =   NORMAL;                 //Robot's interface
-ROBOT_STATE           robot_state         =   DISARMED;               //Robot's state
-RULES_OF_ENGAGEMENT   robot_rules         =   HOLD_FIRE;              //Rules of Engagement for robot
+ROBOT_STATE           robot_state         =   ARMED;                  //Robot's state
+RULES_OF_ENGAGEMENT   robot_rules         =   WEAPONS_HOLD;           //Rules of Engagement for robot
 SEARCH_MODES          robot_search_mode   =   PAN;                    //Robot's search mode
 ROBOT_STATUS          robot_status        =   LIVE;                   //Robot's status
+
+//Default Rules of Engagement for each autonomy mode
+RULES_OF_ENGAGEMENT   SEMI_ROE            =   WEAPONS_HOLD;           //Rules of Engagement for Semi-Autonomous Mode
+RULES_OF_ENGAGEMENT   SUPERVISED_ROE      =   WEAPONS_TIGHT;          //Rules of Engagement for Supervised-Autonomy Mode
+RULES_OF_ENGAGEMENT   FULL_ROE            =   WEAPONS_FREE;           //Rules of Engagement for Full Autonomy Mode
 
 //Jamming Parameters
 int eccm = 3; //Number of ECCM Activations [1,inf) - robot cannot be unjammed when this number reaches zero
@@ -46,7 +53,7 @@ COLOR_SIGNATURES signatureList[7] = {
 //  PERSISTENCE
 //
 // Persistence values range from 0 - 2^32.
-// This variable effects how long the robot will continue to repeat its last action if the robot loses sight of a target.
+// This variable affects how long the robot will continue to repeat its last action if the robot loses sight of a target.
 
 unsigned long persistence = 2000;    // time in milliseconds
 //==========================================================================
@@ -111,9 +118,9 @@ void loop() { //This is the main loop of the program
     if (PS4.connected() || use_controller == false) { //Run program when PS4 Controller is connected (unless controller is explictly stated to be unused)
       //---------Task #1: Process PS4 Controller---------
       
-      //Controller commands only sent when robot is not JAMMED, and the robot is ARMED/TARGET_SPOTTED and in SEMI_AUTONOMY_TELEOP mode
+      //Controller commands only sent when robot is not JAMMED, and the robot is ARMED/TARGET_SPOTTED and in TELEOP mode
       //Joysticks commands are throttled. This is needed so that there is time to read/process pixycam signatures.
-      if (robot_autonomy == SEMI_AUTONOMY_TELEOP && (robot_state == ARMED || robot_state == TARGET_SPOTTED) && robot_interface == NORMAL){         
+      if (robot_autonomy == TELEOP && (robot_state == ARMED || robot_state == TARGET_SPOTTED) && robot_interface == NORMAL){         
         if (millis() - last_teleop > teleop_period){ //Period of teleop algorithm. "teleop_period" defined in Spear_Bot_ps4.h
           parseJoysticks(leftMotorSpeed, rightMotorSpeed, panServo.m_pos, tiltServo.m_pos); 
           
@@ -145,7 +152,7 @@ void loop() { //This is the main loop of the program
             prevTargetError = 0; //Zero error from previous engagement loop
             robot_state = ARMED; //Change robot state to ARMED (i.e. robot will leave the TARGET_SPOTTED/ENGAGING_TARGET states when this occurs)
 
-            if (robot_autonomy != SEMI_AUTONOMY_TELEOP && (millis() - last_search > search_period) && (millis() - last_search > search_duration)){ //Periodically search for targets if robot is not being teleoped
+            if (robot_autonomy != TELEOP && (millis() - last_search > search_period) && (millis() - last_search > search_duration)){ //Periodically search for targets if robot is not being teleoped
               motors.setLeftSpeed(0); 
               motors.setRightSpeed(0);
               
@@ -160,7 +167,7 @@ void loop() { //This is the main loop of the program
           target_last_spotted = millis(); //Mark time that target was spotted
                     
           switch (robot_autonomy){
-            case SEMI_AUTONOMY_TELEOP: //If robot is armed, change to target_spotted state             
+            case TELEOP: //If robot is armed, change to target_spotted state             
               if (robot_state == ARMED){robot_state = TARGET_SPOTTED;}
               break;
     
@@ -343,9 +350,10 @@ void parseButtons(){
       if (finite_actions) {actions_remaining--;}
     }
     
-    //Robot States & Autonomy
-    if (PS4.getButtonPress(L3)){ //Set Robot's state to SEMI_AUTONOMY
-      robot_autonomy = SEMI_AUTONOMY;
+    //Robot States & Autonomy    
+    if (PS4.getButtonPress(L2)){ //Disengage Robot (drops robot back to Teleoperation Mode)
+      robot_autonomy = TELEOP;
+      robot_rules = SEMI_ROE;
       robot_state = ARMED;
 
       motors.setLeftSpeed(0);
@@ -353,59 +361,40 @@ void parseButtons(){
       if (finite_actions) {actions_remaining--;}
     }
     
-    if (PS4.getButtonPress(L2)){ //Disarm Robot
-      robot_state = DISARMED;
-
-      motors.setLeftSpeed(0);
-      motors.setRightSpeed(0);
-      if (finite_actions) {actions_remaining--;}
-    }
-    
-    if (PS4.getButtonPress(R2) && robot_state == TARGET_SPOTTED){ //Engage Target(s)
+    if (PS4.getButtonPress(R2) && robot_state == TARGET_SPOTTED && robot_autonomy != TELEOP){ //Engage Target(s) if you're *NOT* in Teleoperation mode
       robot_state = ENGAGING_TARGET;
       if (finite_actions) {actions_remaining--;}
     }
     
-    if (PS4.getButtonPress(L1)){ //Set Robot's state to SEMI_AUTONOMY (Teleop)
-      robot_autonomy = SEMI_AUTONOMY_TELEOP;
-      robot_state = ARMED; 
-      if (finite_actions) {actions_remaining--;}     
-    }
-    
-    if (PS4.getButtonPress(R1)){ //Set Robot's state to SUPERVISED_AUTONOMY
-      robot_autonomy = SUPERVISED_AUTONOMY;
-      robot_state = ARMED;
-
-      motors.setLeftSpeed(0);
-      motors.setRightSpeed(0);
-      if (finite_actions) {actions_remaining--;}
-    }
-
-    //Rules of Engagement
-    if (PS4.getButtonPress(TRIANGLE)) { //Weapons Free
-      robot_rules = WEAPONS_FREE;
+    //Autonomy Modes
+    if (PS4.getButtonPress(TRIANGLE)) { //Full Autonomy
+      robot_autonomy = FULL_AUTONOMY;
+      robot_rules = FULL_ROE;
       robot_state = ARMED;  
       if (finite_actions) {actions_remaining--;}
     }
     
-    if (PS4.getButtonPress(CIRCLE)) { //Weapons Tight
-      robot_rules = WEAPONS_TIGHT;
+    if (PS4.getButtonPress(CIRCLE)) { //Teleoperation
+      robot_autonomy = TELEOP;
+      robot_rules = SEMI_ROE;
       robot_state = ARMED;
       if (finite_actions) {actions_remaining--;}
     }
     
-    if (PS4.getButtonPress(CROSS)) { //Weapons Hold
-      robot_rules = WEAPONS_HOLD;
+    if (PS4.getButtonPress(CROSS)) { //Semi-Autonomy
+      robot_autonomy = SEMI_AUTONOMY;
+      robot_rules = SEMI_ROE;
       robot_state = ARMED;
       if (finite_actions) {actions_remaining--;}
     }
     
-    if (PS4.getButtonPress(SQUARE)) { //Hold Fire
-      robot_rules = HOLD_FIRE;
+    if (PS4.getButtonPress(SQUARE)) { //Supervised Autonomy
+      robot_autonomy = SUPERVISED_AUTONOMY;
+      robot_rules = SUPERVISED_ROE;
       robot_state = ARMED;
       if (finite_actions) {actions_remaining--;}
     }
-
+    
     //Search Modes
     if (PS4.getButtonPress(UP)) { //Search Mode PAN_FW
       robot_search_mode = PAN_FW;
@@ -424,21 +413,6 @@ void parseButtons(){
     
     if (PS4.getButtonPress(LEFT)) { //Search Mode PAN_CCW
       robot_search_mode = PAN_CCW;
-      if (finite_actions) {actions_remaining--;}
-    }
-
-    //Terminal Commands (you lose control of the robot once these commands are issued)
-    if (PS4.getButtonPress(SHARE)){ //Set Robot to Full Autonomy Mode
-      robot_autonomy = FULL_AUTONOMY;
-      robot_state = ARMED;
-
-      motors.setLeftSpeed(0);
-      motors.setRightSpeed(0);
-      if (finite_actions) {actions_remaining--;}
-    }
-  
-    if (PS4.getButtonPress(OPTIONS)){ //Issue Self-Destruct (i.e. Halt Program)
-      robotDestroyed();
       if (finite_actions) {actions_remaining--;}
     }
     
@@ -651,20 +625,20 @@ void setControllerLED(){
     case ARMED: //LED Color based on Autonomy mode
     
       switch (robot_autonomy) {        
-        case SEMI_AUTONOMY_TELEOP: //Blue LED
-          PS4.setLed(Blue);
+        case TELEOP: //Amber LED (The specified RGB code *should* be Dark Brown, but PS4 LED color shows up as dark orange).
+          PS4.setLed(50, 10, 0);
           break;
 
-        case SEMI_AUTONOMY: //Purple LED
+        case SEMI_AUTONOMY: //Blue LED
+          PS4.setLed(Blue); 
+          break;
+
+        case SUPERVISED_AUTONOMY://Purple LED
           PS4.setLed(Purple);
           break;
 
-        case SUPERVISED_AUTONOMY://Green LED
+        case FULL_AUTONOMY: //Green LED
           PS4.setLed(Green);
-          break;
-
-        case FULL_AUTONOMY: //Ochre LED
-          PS4.setLed(204, 119, 34);
           break; 
 
         default:
