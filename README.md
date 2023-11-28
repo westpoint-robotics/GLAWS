@@ -46,7 +46,7 @@ A controller (much like the cruise control on an automobile) allows the robot to
     - e) After extracting the folder, navigate into the `GLAWS-master\libraries` directory. You should see the following folders: `Pixy, Spear_Bot_ps4, USB_Host_Shield_2.0-master, and ZumoMotors`. Copy these four folders to your Arduino library folder (default location is C:\Users\first.last\Documents\Arduino\libraries).
 
 3. Program the Arduino
-    - a) Navigate to the downloaded and extracted GLAWS-master folder in 'Downloads'. Inside it, go to Spear_Bot_ps4 folder and double-click on the `Spear_Bot_ps4.ino` file. This will open the Arduino IDE.
+    - a) Navigate to the downloaded and extracted GLAWS-master folder in 'Downloads'. Inside it, go to glaws15 folder and double-click on the `glaws15.ino` file. This will open the Arduino IDE.
     - b) Select the board type: `Tools > Board > Arduino Uno`.
     <img src="images/board_select.jpg" alt="Board Select" width="500" /> 
     
