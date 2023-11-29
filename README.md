@@ -31,6 +31,21 @@ A controller (much like the cruise control on an automobile) allows the robot to
 </a>
 
 ## Setup and Configuration 
+### PixyCam
+1. Download and Install [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe). This software tool allows the configuration of the robot's sensor, the Pixycam. PixyMon documentation can be found here: [Pixy docs](https://docs.pixycam.com/wiki/doku.php?)
+
+2. Calibrate the pan-tilt servo motors to align the spear with the camera. Use PixyMon to find the **pan servo** position that aligns the camera with the robot's spear. You can use the command `rcs_setPos 0 xxx` in the PixyMon terminal to move the pan servo, where "xxx" is the servo position (0-1000) you want to move to. Note that you can move the **tilt servo** by using the command `rcs_setPos 1 xxx`. The robot's camera and spear **should** be aligned at pan servo position 500. If this is not the case, then you'll need to modify the `RCS_PAN_CENTER_POS` variable in `Spear_Bot_ps4.h`. This file is located in your `\Documents\Arduino\libraries\Spear_Bot_ps4\Spear_Bot_ps4.h` folder. A picture of the section that needs to be changed is located [here](images/pixy_params.png).
+    - If the centered pan servo position is not in the range 475-525, then you should get the instructor to resolve this.
+    - The image below shows an example of a robot that has its camera and spear aligned.
+
+![Alt Text](images/GLAWS_CenteredBalloon_Annotated.png)
+
+3. Training Color Signatures
+The SpearBot uses the PixyCam to identify and engage targets. You can train your PixyCam to acquire targets (specific color signatures). 
+    - To train the PixyCam, add additional signatures, or modify camera settings using PixyMon, follow [Pixy docs](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:teach_pixy_an_object_2).
+    
+    - Color signatures that may be used in exercise scenarios can be found [here](images/Color_Signatures_v1.png).
+
 ### Arduino
 1. [Download Arduino IDE](https://downloads.arduino.cc/arduino-1.8.19-windows.exe) (Legacy version, not 2.2)- This software is used to program the robot's brain, the Arduino microcontroller. Run the executable file to install the software. Installation instructions can be found [here](https://docs.arduino.cc/software/ide-v1/tutorials/Windows). The Arduino microcontroller connects to a computer over a USB cable and receives code from the Arduino IDE.
 <img src="https://i0.wp.com/www.programmingelectronics.com/wp-content/uploads/2012/08/Figure-1.Arduino-Sketch-with-shorcut-keys.jpg" alt="IDE1 Layout" width="500" /> 
@@ -57,22 +72,7 @@ A controller (much like the cruise control on an automobile) allows the robot to
     <img src="images/upload_button.png" alt="Board Select" width="700" />
     
     - e) After upload completes, the Arduino (and robot) should be programmed to run with the default settings.
-
-### PixyCam
-1. Download and Install [PixyMon](https://github.com/charmedlabs/pixy/raw/master/releases/pixymon_windows/pixymon_windows-2.0.9.exe). This software tool allows the configuration of the robot's sensor, the Pixycam. PixyMon documentation can be found here: [Pixy docs](https://docs.pixycam.com/wiki/doku.php?)
-
-2. Calibrate the pan-tilt servo motors to align the spear with the camera. Use PixyMon to find the **pan servo** position that aligns the camera with the robot's spear. You can use the command `rcs_setPos 0 xxx` in the PixyMon terminal to move the pan servo, where "xxx" is the servo position (0-1000) you want to move to. Note that you can move the **tilt servo** by using the command `rcs_setPos 1 xxx`. The robot's camera and spear **should** be aligned at pan servo position 500. If this is not the case, then you'll need to modify the `RCS_PAN_CENTER_POS` variable in `Spear_Bot_ps4.h`. This file is located in your `\Documents\Arduino\libraries\Spear_Bot_ps4\Spear_Bot_ps4.h` folder. A picture of the section that needs to be changed is located [here](images/pixy_params.png).
-    - If the centered pan servo position is not in the range 475-525, then you should get the instructor to resolve this.
-    - The image below shows an example of a robot that has its camera and spear aligned.
-
-![Alt Text](images/GLAWS_CenteredBalloon_Annotated.png)
-
-3. Training Color Signatures
-The SpearBot uses the PixyCam to identify and engage targets. You can train your PixyCam to acquire targets (specific color signatures). 
-    - To train the PixyCam, add additional signatures, or modify camera settings using PixyMon, follow [Pixy docs](https://docs.pixycam.com/wiki/doku.php?id=wiki:v1:teach_pixy_an_object_2).
-    
-    - Color signatures that may be used in exercise scenarios can be found [here](images/Color_Signatures_v1.png).
-
+      
 ## Operating the SpearBot
 The robot can search for targets and operate at varying levels of autonomy based on specified rules of engagement. In addition to the built-in autonomy, the robot can be controlled with (or without) a PS4 controller.
 1. Levels of Autonomy: This governs how the operator interacts with the robot. Levels of autonomy are denoted by an LED color when using a PS4 controller.
